@@ -57,7 +57,7 @@ iris                svc                 1920e0e5551c        About a minute ago  
 ...
 ```
 
-Run a container off each image. Inside each container the app will run on port 5000, the default port number used by Flask. Map host VM port number 5001 to container port 5000 for the `svc` model version of the app and to container port 5002 for the `lin_svc` model version of the app. This way we can run both versions at the same time and compare their predictions for the test point:
+Run a container off each image. Inside each container the app will run on port 5000, the default port number used by Flask. Map host VM port number 5001 to container port 5000 for the `svc` model version of the app. Map host VM port number 5002 to container port 5000 for the `lin_svc` model version of the app. This way we can run both versions at the same time and compare their predictions for the test point:
 ```
 root@docker-s-1vcpu-1gb-sfo2-01:~/docker-basics/dat-sci-demo# docker run --rm -d -p 5001:5000 --name iris_svc iris:svc
 root@docker-s-1vcpu-1gb-sfo2-01:~/docker-basics/dat-sci-demo# docker run --rm -d -p 5002:5000 --name iris_lin_svc iris:lin_svc

@@ -401,7 +401,7 @@ Strictly speaking, `docker stop` only stops a container but does not actually re
 
 We can also remove the images with [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/):
 ```
-root@docker-s-1vcpu-1gb-sfo2-01:~/docker-basics/basic-demo# docker rmi -f $(docker images -a -q)
+root@docker-s-1vcpu-1gb-sfo2-01:~/docker-basics/basic-demo# docker rmi -f $(docker images -q)
 ```
 
 The VM is now back to a "pristine" Docker state:
