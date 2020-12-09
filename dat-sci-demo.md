@@ -19,7 +19,7 @@ dat-sci-demo/
 2 directories, 9 files
 ```
 
-The Jupyter notebook `pickle_models.ipynb` runs a simplified version of [a Scikit-learn example](https://scikit-learn.org/stable/auto_examples/svm/plot_iris.html). That example compares the performance of two support vector machine classifiers on the iris data set. The notebook has already been run to completion. It trained the two classifiers and it saved each as a `.pkl` file in the two subdirectories. The classifiers take in values for an iris' sepal length and sepal width and use them to predict whether the species is "setosa", "virginica" or "versicolor".
+The Jupyter notebook `pickle_models.ipynb` runs a simplified version of [a Scikit-learn example](https://scikit-learn.org/stable/auto_examples/svm/plot_iris_svc.html). That example compares the performance of two support vector machine classifiers on the iris data set. The notebook has already been run to completion. It trained the two classifiers and it saved each as a `.pkl` file in the two subdirectories. The classifiers take in values for an iris' sepal length and sepal width and use them to predict whether the species is "setosa", "virginica" or "versicolor".
 
 The subdirectory `svc` received a trained model made using `sklearn.svm.SVC` with a linear kernel.
 
