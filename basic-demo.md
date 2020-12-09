@@ -27,7 +27,7 @@ root@docker-s-1vcpu-1gb-sfo2-01:~# systemctl status docker
            └─833 /usr/bin/dockerd -H fd://
 ```
 
-Note the mention of a **CGroup** in the output. **Control groups** are one of the [key Linux technologies used to make containers](https://docs.docker.com/engine/docker-overview/#control-groups):
+Note the mention of a **CGroup** in the output. **Control groups** are one of the [key Linux technologies used to make containers](https://docs.docker.com/get-started/overview/#control-groups):
 > A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.
 
 Another way to confirm Docker is installed and running:
@@ -222,7 +222,7 @@ basic_demo          latest              db91f02383a8        10 seconds ago      
 centos              7                   9f38484d220f        8 days ago          202MB
 ```
 
-Before proceeding further, this is the perfect point in time to see Docker's use of Linux's [union filesystem capability](https://docs.docker.com/engine/docker-overview/#union-file-systems) in action. The output of the `docker images` command might make it look like we have filled up 606MB of disk space. But that is deceptive because half of the `basic_demo` image size is the layers of the base `centos` image. Use [docker system df](https://docs.docker.com/engine/reference/commandline/system/), the Docker analogue of the linux command `df` ("disk free") to see the total disk space actually taken up by Docker images on this machine:
+Before proceeding further, this is the perfect point in time to see Docker's use of Linux's [union filesystem capability](https://docs.docker.com/get-started/overview/#union-file-systems) in action. The output of the `docker images` command might make it look like we have filled up 606MB of disk space. But that is deceptive because half of the `basic_demo` image size is the layers of the base `centos` image. Use [docker system df](https://docs.docker.com/engine/reference/commandline/system/), the Docker analogue of the linux command `df` ("disk free") to see the total disk space actually taken up by Docker images on this machine:
 ```
 root@docker-s-1vcpu-1gb-sfo2-01:~/docker-basics/basic-demo# docker system df
 TYPE                TOTAL               ACTIVE              SIZE                RECLAIMABLE
@@ -313,7 +313,7 @@ root     20300   876  0 22:16 ?        00:00:01  \_ containerd-shim -namespace m
 ...
 root     19444     1  0 21:56 ?        00:00:00 python3 app.py blue
 ```
-Aha! In addition to process `python3 app.py blue` which we left running from before, now we see on the host there is also running a distinct process `python app.py red`, which is the process running inside the container. What from inside the container appeared to be a process with PID 1 turns out in truth to be a process with PID 20328 on the host. Also, the tree structure shows that the red copy of the application is running as a child of `containerd`, in a [namespace](https://docs.docker.com/engine/docker-overview/#namespaces) of its own.
+Aha! In addition to process `python3 app.py blue` which we left running from before, now we see on the host there is also running a distinct process `python app.py red`, which is the process running inside the container. What from inside the container appeared to be a process with PID 1 turns out in truth to be a process with PID 20328 on the host. Also, the tree structure shows that the red copy of the application is running as a child of `containerd`, in a [namespace](https://docs.docker.com/get-started/overview/#namespaces) of its own.
 
 Containers would not be very convenient if in order to reach the apps running inside the container we had to always open an interactive shell to "step inside" the container. To reach the app from the host environment (ultimately even remotely from another machine, but skip that for now), we reach it on the port number which was mapped to port 5000 inside the container.
 
